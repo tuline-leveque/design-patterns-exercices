@@ -2,6 +2,8 @@
 
 namespace Test;
 
+use App\GPUDecorator;
+use App\OledScreenDecorator;
 use PHPUnit\Framework\TestCase;
 
 use App\Laptop;
@@ -18,13 +20,19 @@ class ComputerDecoratorTest extends TestCase
 
     public function testLaptopWithGPU()
     {
-        // TODO: faire le test
-        $this->assertSame(true, 1 === 1);
+        $laptop = new Laptop();
+        $laptop = new GPUDecorator($laptop);
+
+        $this->assertSame(800, $laptop->getPrice());
+        $this->assertSame("A laptop computer with a GPU", $laptop->getDescription());
     }
 
     public function testLaptopWithOLEDScreen()
     {
-        // TODO: faire le test
-        $this->assertSame(false, 1 === 2);
+        $laptop = new Laptop();
+        $laptop = new OledScreenDecorator($laptop);
+
+        $this->assertSame(1600, $laptop->getPrice());
+        $this->assertSame("A laptop computer with an Oled Screen", $laptop->getDescription());
     }
 }
